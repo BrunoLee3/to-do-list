@@ -1,0 +1,36 @@
+body {
+    font-family: "Open Sans", sans-serif;
+    line-height: 1.6;
+}
+
+.add-ToDo-input,
+.edit-ToDo-input {
+    outline: none;
+}
+
+.add-ToDo-input:focus,
+.edit-ToDo-input:focus {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.view-opt-label,
+.date-label {
+    font-size: 0.8rem;
+}
+
+.edit-ToDo-input {
+    font-size: 1.7rem !important;
+}
+
+.ToDo-actions {
+    visibility: hidden !important;
+}
+
+.ToDo-item:hover .ToDo-actions {
+    visibility: visible !important;
+}
+
+.ToDo-item.editing .ToDo-actions .edit-icon {
+    display: none !important;
+}
