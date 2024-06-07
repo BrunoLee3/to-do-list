@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Tarefa;
 
-class dashboardController extends Controller
+class indexController extends Controller
 {
     public function index()
     {
-        return view('dashboard', [
+        return view('index', [
             'tarefas' => Tarefa::orderBy('created_at', 'DESC')->get()
         ]);
     }

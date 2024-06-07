@@ -34,13 +34,6 @@ window.onload = function () {
                 $(".due-date-label").text(formatDate(dateChangeEvent.date));
             });
     });
-
-    $(document).ready(function() {
-        $('.ToDo-item h2 .btn').click(function() {
-            $(this).toggleClass('d-none');
-            $(this).siblings('.btn').toggleClass('d-none');
-        });
-    });
 };
 
 

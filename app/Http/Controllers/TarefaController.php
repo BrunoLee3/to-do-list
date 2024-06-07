@@ -8,48 +8,61 @@ use Illuminate\Http\Request;
 class TarefaController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     */
-    public function index(Tarefa $tarefa)
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store()
     {
         $validado = request()->validate([
-            'title' => 'required|min:3|max:20',
+            'title' => 'required|min:3|max:30',
         ]);
 
         Tarefa::create($validado);
 
-        return redirect()->route('dashboard.show');
+        return redirect()->route('index.show');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+    public function edit($id){
+
+        $tarefa = Tarefa::findOrFail($id);
+
+        return view('include.item.edit', compact('tarefa'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update($id)
     {
-        //
+        $tarefa = Tarefa::findOrFail($id);
+
+        $tarefa->update(request()->all());
+
+        return redirect()->route('index.show');
+
+    }
+
+    public function updateColumn($id){
+        
+        $tarefa = Tarefa::findOrFail($id);
+
+        if($tarefa->completed > 0){
+            $tarefa->completed = 0;
+            $tarefa->save();
+        }else{
+            $tarefa->completed = 1;
+            $tarefa->save();
+        }
+
+        return redirect()->route('index.show');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        Tarefa::destroy($id);
+
+        return redirect()->route('index.show');
     }
 }
